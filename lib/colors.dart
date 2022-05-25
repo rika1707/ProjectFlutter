@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => const MyColorsPage(title: '',);
-
 class MyColorsPage extends StatefulWidget {
   const MyColorsPage({Key? key, required this.title}) : super(key: key);
 

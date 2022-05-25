@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_basic/count_screen.dart';
+import 'package:flutter_application_basic/counter.dart';
 
 import 'colors.dart';
 import 'home_view.dart';
@@ -20,7 +22,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: const MyHomePageView(),
-      home: const MyColorsPage(title: 'Flutter Demo Home Colors'),
+      //home: const MyColorsPage(title: 'Flutter Demo Home Colors'),
+      //home: const Counter()
+      home: const CounterFull(),
     );
   }
 }
