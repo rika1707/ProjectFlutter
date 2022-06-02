@@ -51,34 +51,25 @@ class ListView1 extends StatelessWidget {
       body: ListView.builder(
           itemCount: _games.length,
           itemBuilder: (_, index) {
-            return ListTile(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text(_games[index]["name"]!),
-                    content: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.network(_games[index]["image"]!),
-                          Text(_games[index]["description"]!),
-                        ],
-                      ),
-                    ),
-                    actions: <Widget>[
-                      TextButton(
-                        child: const Text("Cerrar"),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ],
+            return const GFAccordion(
+              titleChild: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(_games[index]["image"]!).image,
                   ),
-                );
-              },
-              leading: CircleAvatar(
-                backgroundImage: Image.network(_games[index]["image"]!).image,
+                  Text(_games[index]["name"]!),
+                ],
               ),
-              title: Text(_games[index]["name"]!),
+              contentChild: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    backgroundImage: NetworkImage(_games[index]["image"]!).image,
+                    Text(_games[index]["description"]),
+                  ],
+                )
+                ),
+              collapsedIcon: Icon(Icons.add),
+              expandedIcon: Icon(Icons.minimize),
             );
           }),
     );
