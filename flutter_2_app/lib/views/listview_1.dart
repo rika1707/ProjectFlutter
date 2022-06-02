@@ -57,19 +57,20 @@ class ListView1 extends StatelessWidget {
                   CircleAvatar(
                     backgroundImage: NetworkImage(_games[index]["image"]!),
                   ),
+                  const SizedBox(width: 10),
                   Text(_games[index]["name"]!),
                 ],
               ),
               contentChild: SingleChildScrollView(
                 child: Column(
                   children: [
-                    backgroundImage: NetworkImage(_games[index]["image"]!).image,
-                    Text(_games[index]["description"]),
+                    Image.network(_games[index]["image"]!),
+                    Text(_games[index]["description"]!),
                   ],
                 )
                 ),
-              collapsedIcon: Icon(Icons.add),
-              expandedIcon: Icon(Icons.minimize),
+              collapsedIcon: const Icon(Icons.add),
+              expandedIcon: const Icon(Icons.minimize),
             );
           }),
     );
