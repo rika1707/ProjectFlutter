@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:getwidget/getwidget.dart';
 class ListView1 extends StatelessWidget {
   ListView1({Key? key}) : super(key: key);
 
@@ -51,11 +51,11 @@ class ListView1 extends StatelessWidget {
       body: ListView.builder(
           itemCount: _games.length,
           itemBuilder: (_, index) {
-            return const GFAccordion(
+            return GFAccordion(
               titleChild: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(_games[index]["image"]!).image,
+                    backgroundImage: NetworkImage(_games[index]["image"]!),
                   ),
                   Text(_games[index]["name"]!),
                 ],
