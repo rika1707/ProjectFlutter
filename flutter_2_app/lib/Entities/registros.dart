@@ -8,6 +8,7 @@ class Registros{
   final String? licencia;
   final Carros? carros;
   final Servicios? servicios;
+  final String? imagen;
 
   Registros({
     this.nombre,
@@ -16,14 +17,16 @@ class Registros{
     this.licencia,
     this.carros,
     this.servicios,
+    this.imagen,
   });
 
   factory Registros.fromJson(Map<String, dynamic> json) {
     return Registros(
       nombre: json['nombre'],
       apellido: json['apellido'],
-      telefono: json['telefono'],
+      telefono: json['cel'],
       licencia: json['licencia'],
+      imagen: json['imagen'],
       carros: json['Carro'] != null ? Carros.fromJson(json['Carro']): null,
       servicios: json['Servicio'] != null ? Servicios.fromJson(json['Servicio']): null,
     );
