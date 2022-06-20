@@ -4,6 +4,7 @@ import 'package:flutter_2_app/views/detail_view.dart';
 
 import '../Entities/carros.dart';
 import '../Entities/servicios.dart';
+import '../utils/transicion.dart';
 
 class FirebaseList extends StatefulWidget {
   const FirebaseList({Key? key}) : super(key: key);
@@ -57,43 +58,45 @@ class _FirebaseListState extends State<FirebaseList> {
 
 Widget _crearCardsListWash(context,
     String nombre, String apellido, int telefono, String imagen, String licencia, Carros carros, Servicios servicios) {
-  return Center(
+  return Padding(
+    padding: const EdgeInsets.all(1.0),
     child: Card(
       shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
       child: SizedBox(
-        width: 300,
-        height: 320,
-        child: Column(
+        width: 200,
+        height: 100,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             ClipRRect(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(50),
               child: FadeInImage(
-                height: 200,
+                height: 90,
                 placeholder: const AssetImage('assets/images/loading.gif'),
                 image: NetworkImage(imagen),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
+            
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
               nombre + ' ' + apellido,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             Text(
               telefono.toString(),
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 12,),
             ),
-            const SizedBox(
-              height: 10,
+              ]
             ),
-            ElevatedButton(
+           
+           TextButton(
                 onPressed: () {
                   Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => DetailView(
+                      TransicionPage(DetailView(
                                 nombre: nombre,
                                 apellido: apellido,
                                 telefono: telefono,
@@ -103,7 +106,8 @@ Widget _crearCardsListWash(context,
                                 servicios: servicios,
                               )));
                 },
-                child: const Text('Ver Detalle'))
+                child: const Icon(Icons.arrow_forward_ios_outlined),
+            ),
           ],
         ),
       ),

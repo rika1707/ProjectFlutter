@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_2_app/Entities/registros.dart';
+import 'package:getwidget/getwidget.dart';
 
 import '../Entities/carros.dart';
 import '../Entities/servicios.dart';
@@ -18,127 +19,72 @@ class DetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('Detalle de la Persona'),
         ),
         body: Container(
       child: SingleChildScrollView(
-        child: SizedBox(
-          child: Card(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            elevation: 5,
-            child: Column(
-              children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                 child: FadeInImage(
-                  height: 300,
-                  placeholder: const AssetImage('assets/images/loading.gif'),
-                  image: NetworkImage(imagen),
-                 ),
-               ),
-               const SizedBox(
-                 height: 10,
-               ),
-                Text(
-                  'Nombre: $nombre',
-                  style: const TextStyle(fontSize: 20),
-                ),
-                Text(
-                  'Apellido: $apellido',
-                  style: const TextStyle(fontSize: 20),
-                ),
-                Text(
-                  'Telefono: $telefono',
-                  style: const TextStyle(fontSize: 20),
-                ),
-                Text(
-                  'Licencia: $licencia',
-                  style: const TextStyle(fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Column(
-                  children: <Widget>[
-                    const Text(
-                      'Carros:',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                   Row(
-                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          'Placa: ${carros.placa}',
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Modelo: ${carros.modelo}',
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Color: ${carros.color}',
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Text(
-                      'Servicios:',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Text(
-                          'Lavado: ${servicios.lavado}',
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Tapiceria: ${servicios.tapiceria}',
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                         const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          'Polish: ${servicios.polish}',
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Regresar'),
-                 ),
-              ],
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.all(3.0),
+              child: Image.network(
+                imagen,
+                fit: BoxFit.cover,
+              ),
+              height: 300,
+              width: double.infinity,
             ),
-          ),
-        ),
+            GFAccordion(
+              title: 'Datos Personales',
+              contentChild: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                   Text('Nombre: $nombre'),
+                    Text('Apellido: $apellido'),
+                    Text('Telefono: $telefono'),
+                    Text('Licencia: $licencia'),
+                  ],
+                )
+                ),
+              collapsedIcon: const Icon(Icons.add),
+              expandedIcon: const Icon(Icons.minimize),
+            ),
+            GFAccordion(
+              title: 'Datos del Carro',
+              contentChild: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                   Text('Color: ${carros.color}'),
+                    Text('Marca: ${carros.marca}'),
+                    Text('Modelo: ${carros.modelo}'),
+                    Text('Placa: ${carros.placa}'),
+                  ],
+                )
+                ),
+              collapsedIcon: const Icon(Icons.add),
+              expandedIcon: const Icon(Icons.minimize),
+            ),
+             GFAccordion(
+              title: 'Datos del Servicio',
+              contentChild: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                   Text('Lavado: ${servicios.lavado}'),
+                    Text('Tapiceria: ${servicios.tapiceria}'),
+                    Text('Polish: ${servicios.polish}'),
+                  ],
+                )
+                ),
+              collapsedIcon: const Icon(Icons.add),
+              expandedIcon: const Icon(Icons.minimize),
+            ),
+              
+          ],
       ),
     ),
       ),
