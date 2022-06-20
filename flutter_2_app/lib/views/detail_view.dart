@@ -24,106 +24,123 @@ class DetailView extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Detalle de la Persona'),
         ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(
-                height: 20,
-              ),
-              CircleAvatar(
-                
-                radius: 120,
-                backgroundImage: NetworkImage(imagen),
-              ),
-              Text(nombre + ' ' + apellido,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-              ),
-              Text(telefono.toString(),
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-              ),
-              Text(licencia,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-              ),
-             Column(
-                children: <Widget>[
-                  const Text('Carro:',
-                  style:  TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        carros.modelo.toString(),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+        body: Container(
+      child: SingleChildScrollView(
+        child: SizedBox(
+          child: Card(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            elevation: 5,
+            child: Column(
+              children: <Widget>[
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                 child: FadeInImage(
+                  height: 300,
+                  placeholder: const AssetImage('assets/images/loading.gif'),
+                  image: NetworkImage(imagen),
+                 ),
+               ),
+               const SizedBox(
+                 height: 10,
+               ),
+                Text(
+                  'Nombre: $nombre',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                Text(
+                  'Apellido: $apellido',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                Text(
+                  'Telefono: $telefono',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                Text(
+                  'Licencia: $licencia',
+                  style: const TextStyle(fontSize: 20),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Column(
+                  children: <Widget>[
+                    const Text(
+                      'Carros:',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                   Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          'Placa: ${carros.placa}',
+                          style: const TextStyle(fontSize: 20),
                         ),
+                        const SizedBox(
+                          width: 10,
                         ),
-                  Text(carros.placa.toString(),
-                  style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          'Modelo: ${carros.modelo}',
+                          style: const TextStyle(fontSize: 20),
                         ),
-                  ),
-                  Text(carros.color.toString(),
-                  style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(
+                          width: 10,
                         ),
-                  ),
-                    ]
-                  ),
-                ],
-             ),
-              Column(
-                children: <Widget>[
-                  const Text('Servicio:',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        servicios.tapiceria.toString(),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          'Color: ${carros.color}',
+                          style: const TextStyle(fontSize: 20),
                         ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const Text(
+                      'Servicios:',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text(
+                          'Lavado: ${servicios.lavado}',
+                          style: const TextStyle(fontSize: 20),
                         ),
-                      Text(
-                        servicios.lavado.toString(),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                        const SizedBox(
+                          width: 10,
                         ),
+                        Text(
+                          'Tapiceria: ${servicios.tapiceria}',
+                          style: const TextStyle(fontSize: 20),
                         ),
-                      Text(
-                        servicios.polish.toString(),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                         const SizedBox(
+                          width: 10,
                         ),
+                        Text(
+                          'Polish: ${servicios.polish}',
+                          style: const TextStyle(fontSize: 20),
                         ),
-                  ],),
-            ],),
-                ],
-              ),
+                      ],
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Regresar'),
+                 ),
+              ],
+            ),
           ),
+        ),
+      ),
+    ),
       ),
     );
   }

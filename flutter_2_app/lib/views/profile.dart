@@ -34,7 +34,6 @@ class  ProfileState extends State<Profile> {
             Text('Telefono: 3046735678', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             Text('Correo: rjaramillo@lsv-tech.com', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
             Text('Profesion: Ingeniro de Sistemas', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-            
           ],
         ),
       ),

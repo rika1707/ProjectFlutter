@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_2_app/views/firebase_list.dart';
+import 'package:flutter_2_app/views/home.dart';
 import 'package:flutter_2_app/views/profile.dart';
 
 class Menu extends StatefulWidget {
@@ -11,6 +12,7 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   int _selectIndex = 0;
+  String title = "Home";
   static const TextStyle optionStyle =
       TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -18,18 +20,25 @@ class _MenuState extends State<Menu> {
       'Index 0: Home',
       style: optionStyle,
     ), */
-    Text(
-      'Index 1: Services',
-      style: optionStyle,
-    ),
+    Home(),
     FirebaseList(),
     Profile(),
-   
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectIndex = index;
+      switch (_selectIndex) {
+        case 0:
+          title = "Home";
+          break;
+        case 1:
+          title = "Services";
+          break;
+        case 2:
+          title = "Profile";
+          break;
+      }
     });
   }
 
@@ -38,13 +47,13 @@ class _MenuState extends State<Menu> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue[600],
-          title: const Text('Menu'),
+          title: Text(title),
         ),
         body: Center(
           child: _widgetOptions.elementAt(_selectIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+          items:  const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
